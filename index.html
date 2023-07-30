@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Example</title>
+    <style>
+    </style>
 </head>
-<body>
+<body id="body">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/websocket/7.3.1/websocket.min.js"></script>
 <script>
     // URL des WebSockets
@@ -26,6 +28,7 @@
         console.log("Nachricht empfangen:", event.data);
         // Hier können Sie auf empfangene Nachrichten reagieren.
         document.getElementById("messages").innerText += "↓" + event.data + "\n"
+        document.getElementById("body").style.background = event.data
     };
 
     socket.onclose = (event) => {
