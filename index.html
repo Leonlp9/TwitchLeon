@@ -2,9 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Example</title>
 </head>
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/websocket/7.3.1/websocket.min.js"></script>
+<script>
+    // URL des WebSockets
+    const socketUrl = "wss://s9654.fra1.piesocket.com/v3/1?api_key=33S0Qn3QSUvTMcpMZ4PeeU62u5XqIvJq45v6nClO&notify_self=1";
+
+    // WebSocket-Verbindung herstellen
+    const socket = new WebSocket(socketUrl);
+
+    // Event-Handler für Verbindungsereignisse
+    socket.onopen = () => {
+        console.log("WebSocket-Verbindung hergestellt!");
+        // Hier können Sie Aktionen ausführen, wenn die Verbindung hergestellt wurde.
+        socket.send("WebSocket-Verbindung hergestellt!");
+    };
+
+    socket.onmessage = (event) => {
+        console.log("Nachricht empfangen:", event.data);
+        // Hier können Sie auf empfangene Nachrichten reagieren.
+        document.getElementById("messages").innerText += event.data + "\n"
+    };
+
+    socket.onclose = (event) => {
+        console.log("WebSocket-Verbindung geschlossen:", event);
+        // Hier können Sie auf das Schließen der Verbindung reagieren.
+    };
+
+    socket.onerror = (error) => {
+        console.error("WebSocket-Fehler:", error);
+        // Hier können Sie auf Fehler reagieren, die während der Verbindung auftreten.
+    };
+
+    // Zum Senden von Nachrichten:
+    //socket.send("Ihre Nachricht hier");
+
+    // Zum Schließen der Verbindung:
+    // socket.close();
+</script>
+
+<div id="messages">
+
+</div>
+
+<label>
+    <input id="msg" type="text">
+</label>
+
+<button onclick="socket.send(document.getElementById('msg').value); document.getElementById('msg').value = ''">Senden</button>
 
 </body>
 </html>
