@@ -19,7 +19,7 @@
         console.log("WebSocket-Verbindung hergestellt!");
         // Hier können Sie Aktionen ausführen, wenn die Verbindung hergestellt wurde.
         document.getElementById("messages").innerText += "WebSocket-Verbindung hergestellt!\n";
-        socket.send("↓Es wurde eine neue Verbindung zu web socket hergestellt!")
+        socket.send("Es wurde eine neue Verbindung zu web socket hergestellt!")
     };
 
     socket.onmessage = (event) => {
@@ -53,7 +53,7 @@
     <input id="msg" type="text">
 </label>
 
-<button onclick="document.getElementById('messages').innerText += '↑' + event.data + '\n'; socket.send(document.getElementById('msg').value); document.getElementById('msg').value = ''">Senden</button>
+<button onclick="document.getElementById('messages').innerText += '↑' + document.getElementById('msg').value + '\n'; socket.send(document.getElementById('msg').value); document.getElementById('msg').value = ''">Senden</button>
 
 </body>
 </html>
