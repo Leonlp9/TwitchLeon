@@ -29,6 +29,14 @@
         // Hier können Sie auf empfangene Nachrichten reagieren.
         document.getElementById("messages").innerText += "↓" + event.data + "\n"
         document.getElementById("body").style.background = event.data
+
+        const msg = new SpeechSynthesisUtterance(event.data);
+
+        // Hier kannst du die gewünschte Sprache einstellen, z. B. 'de-DE' für Deutsch
+        msg.lang = 'de-DE';
+
+        // Vorlesen starten
+        speechSynthesis.speak(msg);
     };
 
     socket.onclose = (event) => {
