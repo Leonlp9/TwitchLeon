@@ -18,7 +18,8 @@
     socket.onopen = () => {
         console.log("WebSocket-Verbindung hergestellt!");
         // Hier können Sie Aktionen ausführen, wenn die Verbindung hergestellt wurde.
-        socket.send("WebSocket-Verbindung hergestellt!");
+        document.getElementById("messages").innerText += "WebSocket-Verbindung hergestellt!";
+        socket.send("Es wurde eine neue Verbindung zu web socket hergestellt!")
     };
 
     socket.onmessage = (event) => {
